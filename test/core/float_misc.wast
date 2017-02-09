@@ -360,6 +360,9 @@
 (assert_return (invoke "f32.mul" (f32.const 0x1p-126) (f32.const 0x1p-23)) (f32.const 0x1p-149))
 (assert_return (invoke "f64.mul" (f64.const 0x1p-1022) (f64.const 0x1p-52)) (f64.const 0x0.0000000000001p-1022))
 
+;; http://opencores.org/bug,view,2454
+(assert_return (invoke "f32.mul" (f32.const -0x1.0006p+4) (f32.const 0x1.ap-132)) (f32.const -0x1.a009cp-128))
+
 ;; Test MAX * MIN.
 (assert_return (invoke "f32.mul" (f32.const 0x1.fffffep+127) (f32.const 0x1p-126)) (f32.const 0x1.fffffep+1))
 (assert_return (invoke "f64.mul" (f64.const 0x1.fffffffffffffp+1023) (f64.const 0x1p-1022)) (f64.const 0x1.fffffffffffffp+1))
