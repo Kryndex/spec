@@ -360,6 +360,10 @@
 (assert_return (invoke "f32.mul" (f32.const 0x1p-126) (f32.const 0x1p-23)) (f32.const 0x1p-149))
 (assert_return (invoke "f64.mul" (f64.const 0x1p-1022) (f64.const 0x1p-52)) (f64.const 0x0.0000000000001p-1022))
 
+;; Test MAX * MIN.
+(assert_return (invoke "f32.mul" (f32.const 0x1.fffffep+127) (f32.const 0x1p-126)) (f32.const 0x1.fffffep+1))
+(assert_return (invoke "f64.mul" (f64.const 0x1.fffffffffffffp+1023) (f64.const 0x1p-1022)) (f64.const 0x1.fffffffffffffp+1))
+
 ;; Miscellaneous values.
 (assert_return (invoke "f32.div" (f32.const 1.123456789) (f32.const 100)) (f32.const 0x1.702264p-7))
 (assert_return (invoke "f32.div" (f32.const 8391667.0) (f32.const 12582905.0)) (f32.const 0x1.55754p-1))
