@@ -60,17 +60,16 @@
 
 ;; Test that stores that are half out of bounds don't store anything to the
 ;; low half.
-;; FIXME: Tests commented out below due to https://github.com/WebAssembly/spec/issues/438
 (assert_trap (invoke "i16.store" (i32.const -1) (i32.const 0x01234567)) "out of bounds memory access")
-;;(assert_return (invoke "i8.load" (i32.const -1)) (i32.const 0))
+(assert_return (invoke "i8.load" (i32.const -1)) (i32.const 0))
 (assert_trap (invoke "i32.store" (i32.const -2) (i32.const 0x01234567)) "out of bounds memory access")
-;;(assert_return (invoke "i16.load" (i32.const -2)) (i32.const 0))
+(assert_return (invoke "i16.load" (i32.const -2)) (i32.const 0))
 (assert_trap (invoke "i64.store" (i32.const -4) (i64.const 0x0123456789abcdef)) "out of bounds memory access")
-;;(assert_return (invoke "i32.load" (i32.const -4)) (i32.const 0))
+(assert_return (invoke "i32.load" (i32.const -4)) (i32.const 0))
 (assert_trap (invoke "f32.store" (i32.const -2) (f32.const 0x1.468acep-125)) "out of bounds memory access")
-;;(assert_return (invoke "i16.load" (i32.const -2)) (i32.const 0))
+(assert_return (invoke "i16.load" (i32.const -2)) (i32.const 0))
 (assert_trap (invoke "f64.store" (i32.const -4) (f64.const 0x1.3456789abcdefp-1005)) "out of bounds memory access")
-;;(assert_return (invoke "i32.load" (i32.const -4)) (i32.const 0))
+(assert_return (invoke "i32.load" (i32.const -4)) (i32.const 0))
 
 ;; Test that loads and stores slightly beyond the end trap.
 (assert_trap (invoke "i8.store" (i32.const 0) (i32.const 13)) "out of bounds memory access")
